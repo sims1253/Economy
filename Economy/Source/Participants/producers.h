@@ -4,7 +4,7 @@ class producers :
 	public economy_participants
 {
 public:
-	producers(void);
+	producers(const std::string inputProduct, const int inputAmount, const int inputCapacity);
 	~producers(void);
 };
 
