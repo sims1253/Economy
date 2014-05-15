@@ -3,7 +3,7 @@
 
 
 int main(){
-	std::cout << "Hallo Welt\n";
+	std::cout << "Hallo Welt\nEnter druecken zum Fortfahren";
 	std::getchar();
 	int i = 5;
 	world welt;
