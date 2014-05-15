@@ -15,6 +15,10 @@ producers::producers(const product inputProduct, const int inputProductivity, co
 	this->productionAmount		= inputProductivity;
 	this->productionCapacity	= inputProductionCapacity;
 	this->money					= inputMoney;
+	
+	//TODO Vectoren Initialisieren
+	this->storage.push_back(4);
+	this->stock.push_back(0);
 	}
 
 /*
@@ -80,10 +84,11 @@ int producers::receive (const product item, const int amount, const int prize)
 		{
 		if((stock[item]<storage[item]) && ((money-prize)>=0))
 			{
-			storage[item]++;
+			stock[item]++;
 			money-=prize;
 			}
 		}
+	//TODO Return funktioniert nicht wie gewollt
 	return amount;
 
 	}
@@ -99,13 +104,14 @@ int producers::receive (const product item, const int amount, const int prize)
 */
 int producers::give (const product item, const int amount, const int prize)
 	{
-	for(int i = 0 ; i <= amount; i++)
+	for(int i = 0 ; i < amount; i++)
 		{
-		if(stock[item]>1)
+		if(stock[item]>0)
 			{
-			storage[item]--;
+			stock[item]--;
 			money+=prize;
 			}
 		}
+	//TODO Return funktioniert nicht wie gewollt
 	return amount;
 	}

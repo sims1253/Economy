@@ -16,6 +16,10 @@ consumers::consumers(const product inputProduct, const int inputAmount, const in
 	this->consumeMinimum		= inputMinimum;
 	this->consumeCapacity		= inputCapacity;
 	this->money					= inputMoney;
+
+	//TODO Vectoren Initialisieren
+	this->storage.push_back(4);
+	this->stock.push_back(0);
 	}
 
 /*
@@ -77,10 +81,11 @@ int consumers::receive (const product item, const int amount, const int prize)
 		{
 		if((stock[item]<storage[item]) && ((money-prize)>=0))
 			{
-			storage[item]++;
+			stock[item]++;
 			money-=prize;
 			}
 		}
+		//TODO Return funktioniert nicht wie gewollt
 	return amount;
 	}
 
@@ -96,13 +101,14 @@ int consumers::receive (const product item, const int amount, const int prize)
 */
 int consumers::give (const product item, const int amount, const int prize)
 	{
-		for(int i = amount; i >=0; i--)
+		for(int i = 0; i < amount; i++)
 		{
-		if(stock[item]>1)
+		if(stock[item]>0)
 			{
-			storage[item]--;
+			stock[item]--;
 			money+=prize;
 			}
 		}
+		//TODO Return funktioniert nicht wie gewollt
 	return amount;
 	}

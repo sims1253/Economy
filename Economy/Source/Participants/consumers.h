@@ -7,7 +7,8 @@
 
 class consumers 
 {
-private:
+//TODO pricate machen. Nur für den dump public
+public:
 	product item;
 	int consumeAmount;
 	int consumeMinimum;
@@ -24,4 +25,8 @@ public:
 	void downgrade (void);
 	int receive (const product item, const int amount, const int prize);
 	int give (const product item, const int amount, const int prize);
+
+
+
+
 };

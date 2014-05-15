@@ -7,7 +7,8 @@
 
 class producers
 {
-private:
+//TODO private machen
+public:
 	product item;
 	int productionAmount;
 	int productionCapacity;
