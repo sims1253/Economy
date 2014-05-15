@@ -159,3 +159,10 @@ $RECYCLE.BIN/
 *.sln
 *.rc
 Economy/RCa06640
+*.html
+*.png
+*.js
+*.md5
+*.dot
+*.css
+Economy/RCa03036
