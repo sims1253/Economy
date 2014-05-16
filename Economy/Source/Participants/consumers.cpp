@@ -2,12 +2,12 @@
 
 
 /**
-	\brief Constructor for a consumer.
-	\param inputProduct product that is consumed.
-	\param inputAmount amount that is consumed.
-	\param inputCapacity max amount that can be consumed.
-	\param inputMinimum min amount that must be consumed.
-	\parm inputMoney starting money.
+\brief Constructor for a consumer.
+\param inputProduct product that is consumed.
+\param inputAmount amount that is consumed.
+\param inputCapacity max amount that can be consumed.
+\param inputMinimum min amount that must be consumed.
+\parm inputMoney starting money.
 */
 consumers::consumers(const product inputProduct, const int inputAmount, const int inputCapacity, const int inputMinimum, const int inputMoney)
 	{
@@ -16,39 +16,50 @@ consumers::consumers(const product inputProduct, const int inputAmount, const in
 	this->consumeMinimum		= inputMinimum;
 	this->consumeCapacity		= inputCapacity;
 	this->money					= inputMoney;
+	this->alive					= 1;
 
-	//TODO Vectoren Initialisieren
+	// TODO Vectoren Initialisieren
 	this->storage.push_back(4);
-	this->stock.push_back(0);
+	this->storage.push_back(4);
+	this->stock.push_back(1);
+	this->stock.push_back(1);
 	}
 
 /*
-	\brief deconstructor
+\brief deconstructor
 */
 consumers::~consumers(void)
 	{
 	}
 
 /**
-	\brief Updates the state of the consumer.
-	\param change change in consuming.
+\brief Updates the state of the consumer.
+\param change change in consuming.
 
-	Consumes(destroys) items until storage is empty or consumeAmount is reached. 
-	Then calls consumers::upgrade if >0, consumers::downgrade if <0 or does nothing.
+Consumes(destroys) items until storage is empty or consumeAmount is reached. 
+Then calls consumers::upgrade if >0, consumers::downgrade if <0 or does nothing.
 */
+// TODO: eat und consume ist aktuell das Gleiche
 void consumers::update (char change)
 	{
-	if(stock[item]>0)
-	stock[item]-=consumeAmount;
-	if(change>0)
-		upgrade();
-	if(change<0)
-		downgrade();
+	eat();
+	if(alive)
+		{
+		if(stock[item]>0)
+			stock[item]-=consumeAmount;
+		if(change>0)
+			upgrade();
+		if(change<0)
+			downgrade();
+		return;
+		}
+	else
+		std::cout << "XXXXXXXXXX  This consumer is dead!  XXXXXXXXXXXXXXXXXX\n";
 	return;
 	}
 
 /**
-	\brief Increases the consumeAmount by 1 if consumeCapacity is not already reached.
+\brief Increases the consumeAmount by 1 if consumeCapacity is not already reached.
 */
 void consumers::upgrade (void)
 	{
@@ -57,7 +68,7 @@ void consumers::upgrade (void)
 	}
 
 /**
-	\brief Reduces the consumeAmount by 1 if consumeMinimum is not already reached.
+\brief Reduces the consumeAmount by 1 if consumeMinimum is not already reached.
 */
 void consumers::downgrade (void)
 	{
@@ -66,49 +77,72 @@ void consumers::downgrade (void)
 	}
 
 /**
-	\brief Recieves items from a trader for money
-	\param item the item, the trader offers.
-	\param amount the amount, the trader offers.
-	\param prize the prize per unit.
-	\return The amount, that was actually taken.
+\brief Recieves items from a trader for money
+\param item the item, the trader offers.
+\param amount the amount, the trader offers.
+\param prize the prize per unit.
+\return The amount, that was actually taken. Or -1 if dead.
 
-	Increases the stored amount of given item until eighter the stock is full or the given amount is reached.
-	Returns how much was given.
+Increases the stored amount of given item until eighter the stock is full or the given amount is reached.
+Returns how much was given.
 */
 int consumers::receive (const product item, const int amount, const int prize)
 	{
-		for(int i = 0; i < amount; i++)
+	if(alive)
 		{
-		if((stock[item]<storage[item]) && ((money-prize)>=0))
+		for(int i = 0; i < amount; i++)
 			{
-			stock[item]++;
-			money-=prize;
+			if((stock[item]<storage[item]) && ((money-prize)>=0))
+				{
+				stock[item]++;
+				money-=prize;
+				}
 			}
+		// TODO Return funktioniert nicht wie gewollt
+		return amount;
 		}
-		//TODO Return funktioniert nicht wie gewollt
-	return amount;
+	else
+		std::cout << "XXXXXXXXXX  This consumer is dead!  XXXXXXXXXXXXXXXXXX\n";
+	return -1;
 	}
 
 /**
-	\brief Gives items to a trader for money
-	\param item the item, the trader gets.
-	\param amount the amount, the trader wants.
-	\param prize the prize per unit.
-	\return The amount, that was actually given.
+\brief Gives items to a trader for money
+\param item the item, the trader gets.
+\param amount the amount, the trader wants.
+\param prize the prize per unit.
+\return The amount, that was actually given.
 
-	Reduces the stored amount of given item until eighter there is nothing left in stock or the given amount is reached.
-	Returns how much was given.
+Reduces the stored amount of given item until eighter there is nothing left in stock or the given amount is reached.
+Returns how much was given.
 */
 int consumers::give (const product item, const int amount, const int prize)
 	{
-		for(int i = 0; i < amount; i++)
+	if(alive)
 		{
-		if(stock[item]>0)
+		for(int i = 0; i < amount; i++)
 			{
-			stock[item]--;
-			money+=prize;
+			if(stock[item]>0)
+				{
+				stock[item]--;
+				money+=prize;
+				}
 			}
+		// TODO Return funktioniert nicht wie gewollt
+		return amount;
 		}
-		//TODO Return funktioniert nicht wie gewollt
-	return amount;
+	else
+		std::cout << "XXXXXXXXXX  This consumer is dead!  XXXXXXXXXXXXXXXXXX\n";
+	return -1;
+	}
+
+/*
+\brief Consumers eat 1 food per turn. If there is no food they die.
+*/
+void consumers::eat()
+	{
+	if(stock[NAHRUNG])
+		stock[NAHRUNG]--;
+	else
+		alive = 0;
 	}

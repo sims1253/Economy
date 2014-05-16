@@ -1,20 +1,24 @@
 #pragma once
 
 #include <vector>
+#include <iostream>
 
 #include "../World/catalogue.h"
 
 
 class producers
 {
-//TODO private machen
+// TODO private machen
 public:
+
 	product item;
 	int productionAmount;
 	int productionCapacity;
 	int money;
-	std::vector<int> stock;
-	std::vector<int> storage;
+	std::vector<unsigned int> stock;
+	std::vector<unsigned int> storage;
+	void eat();
+	bool alive;
 
 public:
 	producers(const product inputProduct, const int inputAmount, const int inputCapacity, const int inputMoney);

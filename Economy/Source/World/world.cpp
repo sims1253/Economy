@@ -9,8 +9,8 @@
 
 world::world(void)
 {
-	this->consumer = new consumers(WASSER, 1, 3, 1, 100);
-	this->producer = new producers(WASSER, 2, 3, 100);
+	this->consumer = new consumers(NAHRUNG, 1, 3, 1, 100);
+	this->producer = new producers(NAHRUNG, 2, 3, 100);
 }
 
 
@@ -36,25 +36,25 @@ void world::dump()
 	std::cout << "-------------------------------------------- \n";
 	std::cout << "Consumer 1:" << std::endl;
 	std::cout << "Consumes " << consumer->consumeAmount << " of " << productNames[consumer->item] << ". Has " << consumer->money << " moneys." << std::endl;
-	std::cout << "Storage: \n" << productNames[0] << ": " << consumer->stock[0] << "/" << consumer->storage[0] << std::endl << std::endl;
+	std::cout << "Storage: \n" << productNames[NAHRUNG] << ": " << consumer->stock[NAHRUNG] << "/" << consumer->storage[NAHRUNG] << std::endl << std::endl;
 
 	std::cout << "Producer 1:" << std::endl;
 	std::cout << "Produces " << producer->productionAmount << " of " << productNames[producer->item] << ". Has " << producer->money << " moneys." << std::endl;
-	std::cout << "Storage: \n" << productNames[0] << ": " << producer->stock[0] << "/" << producer->storage[0] << std::endl;
+	std::cout << "Storage: \n" << productNames[NAHRUNG] << ": " << producer->stock[NAHRUNG] << "/" << producer->storage[NAHRUNG] << std::endl;
 	}
 
 void world::trade()
 	{
-	if(producer->stock[0] > (consumer->storage[0]-consumer->stock[0]))
+	if(producer->stock[NAHRUNG] > (consumer->storage[NAHRUNG]-consumer->stock[NAHRUNG]))
 		{
-		int tmp = (consumer->storage[0]-consumer->stock[0]);
-		producer->give(WASSER, tmp, 5);
-		consumer->receive(WASSER, tmp, 5);
+		int tmp = (consumer->storage[NAHRUNG]-consumer->stock[NAHRUNG]);
+		producer->give(NAHRUNG, tmp, 25);
+		consumer->receive(NAHRUNG, tmp, 5);
 		}
 	else
 		{
-		int tmp = producer->stock[0];
-		producer->give(WASSER, tmp, 5);
-		consumer->receive(WASSER, tmp, 5);
+		int tmp = producer->stock[NAHRUNG];
+		producer->give(NAHRUNG, tmp, 25);
+		consumer->receive(NAHRUNG, tmp, 5);
 		}
 	}

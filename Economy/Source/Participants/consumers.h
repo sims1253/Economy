@@ -3,19 +3,22 @@
 #include "../World/catalogue.h"
 
 #include <vector>
+#include <iostream>
 
 
 class consumers 
 {
-//TODO pricate machen. Nur für den dump public
+// TODO pricate machen. Nur für den dump public
 public:
 	product item;
 	int consumeAmount;
 	int consumeMinimum;
 	int consumeCapacity;
 	int money;
-	std::vector<int> stock;
-	std::vector<int> storage;
+	std::vector<unsigned int> stock;
+	std::vector<unsigned int> storage;
+	void eat();
+	bool alive;
 
 public:
 	consumers(const product inputProduct, const int inputAmount, const int inputCapacity, const int inputMinimum, const int inputMoney);

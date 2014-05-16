@@ -1,5 +1,5 @@
 #pragma once
 
-enum product {
+enum  product {
 	WASSER, NAHRUNG, WERKZEUG
 };

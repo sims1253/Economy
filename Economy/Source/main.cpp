@@ -6,7 +6,7 @@
 int main(){
 	std::cout << "Hallo Welt\nEnter druecken zum Fortfahren";
 	std::getchar();
-	int i = 5;
+	int i = 10;
 	world welt;
 	welt.dump();
 
