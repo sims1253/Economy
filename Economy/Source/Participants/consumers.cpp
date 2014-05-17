@@ -86,24 +86,24 @@ void consumers::downgrade (void)
 Increases the stored amount of given item until eighter the stock is full or the given amount is reached.
 Returns how much was given.
 */
-int consumers::receive (const product item, const int amount, const int prize)
+int consumers::receive (const product item, int amount, const int prize)
 	{
 	if(alive)
 		{
-		for(int i = 0; i < amount; i++)
+		int tmp = 0;
+		while(amount && (stock[item]<storage[item]) && ((money-prize)>=0))
 			{
-			if((stock[item]<storage[item]) && ((money-prize)>=0))
-				{
-				stock[item]++;
-				money-=prize;
-				}
+			stock[item]++;
+			money-=prize;
+			amount--;
 			}
-		// TODO Return funktioniert nicht wie gewollt
-		return amount;
+		return tmp;
 		}
 	else
-		std::cout << "XXXXXXXXXX  This consumer is dead!  XXXXXXXXXXXXXXXXXX\n";
-	return -1;
+		{
+		std::cout << "This producer is dead and can not receive items!\n";
+		return -1;
+		}
 	}
 
 /**
@@ -116,24 +116,25 @@ int consumers::receive (const product item, const int amount, const int prize)
 Reduces the stored amount of given item until eighter there is nothing left in stock or the given amount is reached.
 Returns how much was given.
 */
-int consumers::give (const product item, const int amount, const int prize)
+int consumers::give (const product item, int amount, const int prize)
 	{
 	if(alive)
 		{
-		for(int i = 0; i < amount; i++)
+		int tmp = 0;
+		while((stock[item]>1) && (amount > 0))
 			{
-			if(stock[item]>0)
-				{
-				stock[item]--;
-				money+=prize;
-				}
+			stock[item]--;
+			amount--;
+			tmp++;
+
 			}
-		// TODO Return funktioniert nicht wie gewollt
-		return amount;
+		return tmp;
 		}
 	else
-		std::cout << "XXXXXXXXXX  This consumer is dead!  XXXXXXXXXXXXXXXXXX\n";
-	return -1;
+		{
+		std::cout << "This producer is dead and can not give items!\n";
+		return -1;
+		}
 	}
 
 /*

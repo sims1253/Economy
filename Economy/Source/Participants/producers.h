@@ -27,5 +27,5 @@ public:
 	void upgrade (void);
 	void downgrade (void);
 	int receive (const product item, const int amount, const int prize);
-	int give (const product item, const int amount, const int prize);
+	int give (const product item, int amount, const int prize);
 };
