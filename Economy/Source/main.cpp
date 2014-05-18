@@ -4,7 +4,7 @@
 
 
 int main(){
-	std::cout << "Hallo Welt\nEnter druecken zum Fortfahren";
+	std::cout << "Hello world\npress enter to continue ";
 	std::getchar();
 	int i = 10;
 	world welt;

@@ -18,7 +18,7 @@ consumers::consumers(const product inputProduct, const int inputAmount, const in
 	this->money					= inputMoney;
 	this->alive					= 1;
 
-	// TODO Vectoren Initialisieren
+	// TODO initialize vectors
 	this->storage.push_back(4);
 	this->storage.push_back(4);
 	this->stock.push_back(1);
@@ -39,7 +39,7 @@ consumers::~consumers(void)
 Consumes(destroys) items until storage is empty or consumeAmount is reached. 
 Then calls consumers::upgrade if >0, consumers::downgrade if <0 or does nothing.
 */
-// TODO: eat und consume ist aktuell das Gleiche
+// TODO: eat und consume can be the same if item is food
 void consumers::update (char change)
 	{
 	eat();
@@ -126,7 +126,6 @@ int consumers::give (const product item, int amount, const int prize)
 			stock[item]--;
 			amount--;
 			tmp++;
-
 			}
 		return tmp;
 		}

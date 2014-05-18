@@ -118,7 +118,6 @@ int producers::receive (const product item, int amount, const int prize)
 Reduces the stored amount of given item until eighter there is nothing left in stock or the given amount is reached.
 Returns how much was given.
 */
-// TODO verkauft aktuell alle Nahrung, was dafür sorgt, dass er verhungert.
 int producers::give (const product item, int amount, const int prize)
 	{
 	if(alive)
