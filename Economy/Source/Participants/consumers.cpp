@@ -141,8 +141,8 @@ int consumers::give (const product item, int amount, const int prize)
 */
 void consumers::eat()
 	{
-	if(stock[NAHRUNG])
-		stock[NAHRUNG]--;
+	if(stock[FOOD])
+		stock[FOOD]--;
 	else
 		alive = 0;
 	}

@@ -146,8 +146,8 @@ If productivity is at 0 already, the producer dies.
 */
 void producers::eat()
 	{
-	if(stock[NAHRUNG])
-		stock[NAHRUNG]--;
+	if(stock[FOOD])
+		stock[FOOD]--;
 	else if(productionAmount>0)
 		productionAmount--;
 	else

@@ -9,8 +9,8 @@
 
 world::world(void)
 {
-	this->consumer = new consumers(NAHRUNG, 1, 3, 1, 100);
-	this->producer = new producers(NAHRUNG, 2, 3, 100);
+	this->consumer = new consumers(FOOD, 1, 3, 1, 100);
+	this->producer = new producers(FOOD, 2, 3, 100);
 }
 
 
@@ -29,32 +29,32 @@ void world::dump()
 	
 	char *productNames[] =
 	{
-	"Wasser",
-	"Nahrung",
-	"WERKZEUG"
+	"WATER",
+	"FOOD",
+	"TOOLS"
 	};
 	std::cout << "-------------------------------------------- \n";
 	std::cout << "Consumer 1:" << std::endl;
 	std::cout << "Consumes " << consumer->consumeAmount << " of " << productNames[consumer->item] << ". Has " << consumer->money << " moneys." << std::endl;
-	std::cout << "Storage: \n" << productNames[NAHRUNG] << ": " << consumer->stock[NAHRUNG] << "/" << consumer->storage[NAHRUNG] << std::endl << std::endl;
+	std::cout << "Storage: \n" << productNames[FOOD] << ": " << consumer->stock[FOOD] << "/" << consumer->storage[FOOD] << std::endl << std::endl;
 
 	std::cout << "Producer 1:" << std::endl;
 	std::cout << "Produces " << producer->productionAmount << " of " << productNames[producer->item] << ". Has " << producer->money << " moneys." << std::endl;
-	std::cout << "Storage: \n" << productNames[NAHRUNG] << ": " << producer->stock[NAHRUNG] << "/" << producer->storage[NAHRUNG] << std::endl;
+	std::cout << "Storage: \n" << productNames[FOOD] << ": " << producer->stock[FOOD] << "/" << producer->storage[FOOD] << std::endl;
 	}
 
 void world::trade()
 	{
-	if(producer->stock[NAHRUNG] > (consumer->storage[NAHRUNG]-consumer->stock[NAHRUNG]))
+	if(producer->stock[FOOD] > (consumer->storage[FOOD]-consumer->stock[FOOD]))
 		{
-		int tmp = (consumer->storage[NAHRUNG]-consumer->stock[NAHRUNG]);
-		producer->give(NAHRUNG, tmp, 25);
-		consumer->receive(NAHRUNG, tmp, 5);
+		int tmp = (consumer->storage[FOOD]-consumer->stock[FOOD]);
+		producer->give(FOOD, tmp, 25);
+		consumer->receive(FOOD, tmp, 5);
 		}
 	else
 		{
-		int tmp = producer->stock[NAHRUNG];
-		producer->give(NAHRUNG, tmp, 25);
-		consumer->receive(NAHRUNG, tmp, 5);
+		int tmp = producer->stock[FOOD];
+		producer->give(FOOD, tmp, 25);
+		consumer->receive(FOOD, tmp, 5);
 		}
 	}
