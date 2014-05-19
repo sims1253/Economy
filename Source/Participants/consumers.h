@@ -1,19 +1,21 @@
 #pragma once
 
+#include "../World/catalogue.h"
+#include "../Participants/EconomyParticipants.h"
+
 #include <vector>
 #include <iostream>
 
-#include "../World/catalogue.h"
 
-
-class producers
+class consumers :
+	public EconomyParticipants
 {
-// TODO private machen
+// TODO private
 public:
-
 	product item;
-	int productionAmount;
-	int productionCapacity;
+	int consumeAmount;
+	int consumeMinimum;
+	int consumeCapacity;
 	int money;
 	std::vector<unsigned int> stock;
 	std::vector<unsigned int> storage;
@@ -21,11 +23,15 @@ public:
 	bool alive;
 
 public:
-	producers(const product inputProduct, const int inputAmount, const int inputCapacity, const int inputMoney);
-	~producers(void);
+	consumers(const product inputProduct, const int inputAmount, const int inputCapacity, const int inputMinimum, const int inputMoney);
+	~consumers(void);
 	void update (char change);
 	void upgrade (void);
 	void downgrade (void);
 	int receive (const product item, const int amount, const int prize);
 	int give (const product item, int amount, const int prize);
+
+
+
+
 };
