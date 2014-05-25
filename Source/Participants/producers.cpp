@@ -1,4 +1,4 @@
-#include "producers.h"
+#include "Producers.h"
 
 /**
 \brief Constructor for a producer.
@@ -9,7 +9,7 @@
 
 */
 // TODO Ressource use for production
-producers::producers(const product inputProduct, const int inputProductivity, const int inputProductionCapacity, const int inputMoney)
+Producers::Producers(const product inputProduct, const int inputProductivity, const int inputProductionCapacity, const int inputMoney)
 	{
 	this->item					= inputProduct;
 	this->productionAmount		= inputProductivity;
@@ -18,8 +18,8 @@ producers::producers(const product inputProduct, const int inputProductivity, co
 	this->alive					= 1;
 
 	// TODO Vectoren Initialisieren
-	this->storage.push_back(4);
-	this->storage.push_back(4);
+	this->storageCapacity.push_back(4);
+	this->storageCapacity.push_back(4);
 	this->stock.push_back(1);
 	this->stock.push_back(1);
 	}
@@ -27,7 +27,7 @@ producers::producers(const product inputProduct, const int inputProductivity, co
 /*
 \brief deconstructor
 */
-producers::~producers(void)
+Producers::~Producers(void)
 	{
 	}
 
@@ -38,11 +38,11 @@ producers::~producers(void)
 Produces items until storage is full or productionAmount is reached. 
 Then calls producers::upgrade if >0, producers::downgrade if <0 or does nothing.
 */
-void producers::update(char change)
+void Producers::update(char change)
 	{
 	eat();
 	if(alive){
-		if(stock[item]<storage[item])
+		if (stock[item]<storageCapacity[item])
 			stock[item]+=productionAmount;
 		if(change>0)
 			upgrade();
@@ -61,7 +61,7 @@ void producers::update(char change)
 /**
 \brief Increases the productionAmount by 1 if productionCapacity is not already reached.
 */
-void producers::upgrade(void)
+void Producers::upgrade(void)
 	{
 	if(productionAmount<productionCapacity)
 		productionAmount++;
@@ -71,7 +71,7 @@ void producers::upgrade(void)
 /**
 \brief Reduces the productionAmount by 1. Can't be lower than 0.
 */
-void producers::downgrade(void)
+void Producers::downgrade(void)
 	{
 	if(productionAmount>0)
 		productionAmount--;
@@ -89,12 +89,12 @@ void producers::downgrade(void)
 Increases the stored amount of given item until eighter the stock is full or the given amount is reached.
 Returns how much was given.
 */
-int producers::receive (const product item, int amount, const int prize)
+int Producers::receive (const product item, int amount, const int prize)
 	{
 	if(alive)
 		{
 		int tmp = 0;
-		while(amount && (stock[item]<storage[item]) && ((money-prize)>=0))
+		while (amount && (stock[item]<storageCapacity[item]) && ((money - prize) >= 0))
 			{
 			stock[item]++;
 			money-=prize;
@@ -118,7 +118,7 @@ int producers::receive (const product item, int amount, const int prize)
 Reduces the stored amount of given item until eighter there is nothing left in stock or the given amount is reached.
 Returns how much was given.
 */
-int producers::give (const product item, int amount, const int prize)
+int Producers::give (const product item, int amount, const int prize)
 	{
 	if(alive)
 		{
@@ -144,7 +144,7 @@ int producers::give (const product item, int amount, const int prize)
 Consumers eat 1 food per turn. If there is no food they reduce their producticity by 1 instead of eating food.
 If productivity is at 0 already, the producer dies.
 */
-void producers::eat()
+void Producers::eat()
 	{
 	if(stock[FOOD])
 		stock[FOOD]--;

@@ -1,14 +1,14 @@
 #pragma once
 
 #include "../World/catalogue.h"
-#include "../Participants/EconomyParticipants.h"
+#include "Traders.h"
 
 #include <vector>
 #include <iostream>
 
 
-class consumers :
-	public EconomyParticipants
+class Consumers :
+	public Traders
 {
 // TODO private
 public:
@@ -17,14 +17,12 @@ public:
 	int consumeMinimum;
 	int consumeCapacity;
 	int money;
-	std::vector<unsigned int> stock;
-	std::vector<unsigned int> storage;
 	void eat();
 	bool alive;
 
 public:
-	consumers(const product inputProduct, const int inputAmount, const int inputCapacity, const int inputMinimum, const int inputMoney);
-	~consumers(void);
+	Consumers(const product inputProduct, const int inputAmount, const int inputCapacity, const int inputMinimum, const int inputMoney);
+	~Consumers(void);
 	void update (char change);
 	void upgrade (void);
 	void downgrade (void);

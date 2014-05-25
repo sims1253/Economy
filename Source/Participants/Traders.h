@@ -1,10 +1,13 @@
 #pragma once
+#include <vector>
 #include "../Participants/EconomyParticipants.h"
 class Traders :
 	public EconomyParticipants
 {
 public:
-	Traders();
-	~Traders();
+	std::vector<unsigned int> stock;
+	std::vector<unsigned int> storageCapacity;
+
+
 };
 
