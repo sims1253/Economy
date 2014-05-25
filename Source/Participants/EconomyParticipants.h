@@ -5,6 +5,11 @@
 
 class EconomyParticipants
 {
+private:
+
+public:
+
+
 
 
 };

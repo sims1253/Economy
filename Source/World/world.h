@@ -1,13 +1,13 @@
 #pragma once
-#include "../Participants/consumers.h"
-#include "../Participants/producers.h"
+#include "../Participants/Consumers.h"
+#include "../Participants/Producers.h"
 #include "catalogue.h"
 
 class world
 {
 private:
-	producers *producer;
-	consumers *consumer;
+	Producers *producer;
+	Consumers *consumer;
 public:
 	world(void);
 	~world(void);

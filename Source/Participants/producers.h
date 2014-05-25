@@ -4,11 +4,11 @@
 #include <iostream>
 
 #include "../World/catalogue.h"
-#include "../Participants/EconomyParticipants.h"
+#include "Traders.h"
 
 
-class producers:
-	public EconomyParticipants
+class Producers:
+	public Traders
 {
 // TODO private 
 public:
@@ -17,14 +17,12 @@ public:
 	int productionAmount;
 	int productionCapacity;
 	int money;
-	std::vector<unsigned int> stock;
-	std::vector<unsigned int> storage;
 	void eat();
 	bool alive;
 
 public:
-	producers(const product inputProduct, const int inputAmount, const int inputCapacity, const int inputMoney);
-	~producers(void);
+	Producers(const product inputProduct, const int inputAmount, const int inputCapacity, const int inputMoney);
+	~Producers(void);
 	void update (char change);
 	void upgrade (void);
 	void downgrade (void);

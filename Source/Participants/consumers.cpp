@@ -9,7 +9,7 @@
 \param inputMinimum min amount that must be consumed.
 \parm inputMoney starting money.
 */
-consumers::consumers(const product inputProduct, const int inputAmount, const int inputCapacity, const int inputMinimum, const int inputMoney)
+Consumers::Consumers(const product inputProduct, const int inputAmount, const int inputCapacity, const int inputMinimum, const int inputMoney)
 	{
 	this->item					= inputProduct;
 	this->consumeAmount			= inputAmount;
@@ -19,8 +19,8 @@ consumers::consumers(const product inputProduct, const int inputAmount, const in
 	this->alive					= 1;
 
 	// TODO initialize vectors
-	this->storage.push_back(4);
-	this->storage.push_back(4);
+	this->storageCapacity.push_back(4);
+	this->storageCapacity.push_back(4);
 	this->stock.push_back(1);
 	this->stock.push_back(1);
 	}
@@ -28,7 +28,7 @@ consumers::consumers(const product inputProduct, const int inputAmount, const in
 /*
 \brief deconstructor
 */
-consumers::~consumers(void)
+Consumers::~Consumers(void)
 	{
 	}
 
@@ -40,7 +40,7 @@ Consumes(destroys) items until storage is empty or consumeAmount is reached.
 Then calls consumers::upgrade if >0, consumers::downgrade if <0 or does nothing.
 */
 // TODO: eat und consume can be the same if item is food
-void consumers::update (char change)
+void Consumers::update (char change)
 	{
 	eat();
 	if(alive)
@@ -61,7 +61,7 @@ void consumers::update (char change)
 /**
 \brief Increases the consumeAmount by 1 if consumeCapacity is not already reached.
 */
-void consumers::upgrade (void)
+void Consumers::upgrade (void)
 	{
 	if(consumeAmount<consumeCapacity)
 		consumeAmount++;
@@ -70,7 +70,7 @@ void consumers::upgrade (void)
 /**
 \brief Reduces the consumeAmount by 1 if consumeMinimum is not already reached.
 */
-void consumers::downgrade (void)
+void Consumers::downgrade (void)
 	{
 	if(consumeAmount>consumeMinimum)
 		consumeAmount++;
@@ -86,12 +86,12 @@ void consumers::downgrade (void)
 Increases the stored amount of given item until eighter the stock is full or the given amount is reached.
 Returns how much was given.
 */
-int consumers::receive (const product item, int amount, const int prize)
+int Consumers::receive (const product item, int amount, const int prize)
 	{
 	if(alive)
 		{
 		int tmp = 0;
-		while(amount && (stock[item]<storage[item]) && ((money-prize)>=0))
+		while (amount && (stock[item]<storageCapacity[item]) && ((money - prize) >= 0))
 			{
 			stock[item]++;
 			money-=prize;
@@ -116,7 +116,7 @@ int consumers::receive (const product item, int amount, const int prize)
 Reduces the stored amount of given item until eighter there is nothing left in stock or the given amount is reached.
 Returns how much was given.
 */
-int consumers::give (const product item, int amount, const int prize)
+int Consumers::give (const product item, int amount, const int prize)
 	{
 	if(alive)
 		{
@@ -139,7 +139,7 @@ int consumers::give (const product item, int amount, const int prize)
 /*
 \brief Consumers eat 1 food per turn. If there is no food they die.
 */
-void consumers::eat()
+void Consumers::eat()
 	{
 	if(stock[FOOD])
 		stock[FOOD]--;
