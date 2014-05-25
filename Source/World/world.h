@@ -1,18 +1,15 @@
 #pragma once
-#include "../Participants/Consumers.h"
-#include "../Participants/Producers.h"
+#include "../Participants/Manufactur.h"
 #include "catalogue.h"
 
 class world
 {
 private:
-	Producers *producer;
-	Consumers *consumer;
+	Manufactur *producer;
+	Manufactur *consumer;
 public:
 	world(void);
 	~world(void);
 	void update();
 	void trade();
-	void dump();
-
 	};

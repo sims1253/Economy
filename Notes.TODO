@@ -1,14 +1,32 @@
-Producers:
- ☐ Rohstoffe zum Produzieren benutzten. 
- ☐ Preis selbst bestimmen bzw nicht automatisch verkaufen.
- ☐ Dienstleistungen
- ☐ Verkauft aktuell alle Nahrung falls möglich und vergungert.
- ☐ Kaufen und verkaufen funktioniert noch nicht 100%
 
-Consumers:
- ☐ Einkommen?
- ☐ Forderung an Händler stellen?
- ☐ Preis am Angebot/Bestand selbst bestimmen
- ☐ Folgen von Unterversorgung? 
- ☐ eat und consume kann das gleiche sein, also 2 mal essen
+
+
+
+Traders:
+ ☐ items als Vektor verwalten
+ ☐ Vektoren initialisieren
+
+Manufactur:
+ ☐ Preis am Angebot/Bestand selbst bestimmen, nicht automatisch verkaufen.
  ☐ Kaufen und verkaufen funktioniert noch nicht 100%
+ ☐ verschiedene produkte produzieren und konsumieren. Mit Vektoren managen?
+ Consumers:
+ ☐ Forderung an Händler stellen?
+ ☐ Kaufen und verkaufen funktioniert noch nicht 100%
+ ☐ Folge von nicht Vorhandensein von Konsumgut?
+   Producers:
+ ☐ Rohstoffe zum Produzieren benutzten. 
+ ☐ Dienstleistungen?
+
+Overall:
+  ☐ Consumers und Producers zu manufactur zusammenführen
+  ☐ life important ressources
+  ☐ Tradables
+  ☐ Environment
+  ☐ Condition
+  ☐ Verhalten beim "sterben"
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+ ✔ Verkauft aktuell alle Nahrung falls möglich und vergungert. @done (14-05-25 21:45) @project(Producers)
+ ✔ Folgen von Unterversorgung? @done (14-05-25 21:45) @project(Consumers)
