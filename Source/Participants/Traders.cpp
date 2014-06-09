@@ -15,7 +15,7 @@ int Traders::receive(const product item, int amount, const int prize)
 	if (alive)
 	{
 		int tmp = 0;
-		while (amount && (stock[item]<storageCapacity[item]) && ((money - prize) >= 0))
+		while (amount && (stock[item]<storageCapacity[item]) && (money>= prize))
 		{
 			stock[item]++;
 			money -= prize;
@@ -76,10 +76,46 @@ int Traders::give(const product item, int amount, const int prize)
 /*
 \brief Consumers eat 1 food per turn. If there is no food they die.
 */
+//TODO update to lifeimportant items
 void Traders::eat()
 {
 	if (stock[FOOD])
 		stock[FOOD]--;
 	else
 		alive = 0;
+}
+
+
+//implement cool buying behaviour?
+/*
+-1 when not enough money
+1 when everything went as planned
+*/
+//TODO doc pls
+int Traders::buy(Traders seller, const product item, const int prize, const int amount)
+{
+	if ((money - (prize * amount)) < 0)
+		return -1;
+	if (seller.tradable(item) >= amount)
+	{
+		seller.give(item, amount, prize);
+		receive(item, amount, prize);
+	}
+	return 1;
+
+
+}
+
+//implement cool selling behaviour?
+int Traders::sell(Traders buyer, const product item, const int price, const int amount)
+{
+
+}
+
+//returns how much there is to trade
+//TODO doc pls
+//TODO also return the price for given amount
+int Traders::tradable(product item)
+{
+	return stock[item];
 }
