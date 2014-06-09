@@ -21,5 +21,5 @@ public:
 	~Manufactur();
 	bool update(char changeProduction, char changeConsumption);
 	void dump(int id);
-	int tradable(product item);
+	
 };
