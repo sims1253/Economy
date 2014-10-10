@@ -1,13 +1,7 @@
-include_directories(${CMAKEDEMO_SOURCE_DIR}/Participants)
-link_directories(${CMAKEDEMO_BINARY_DIR}/Participants)
-
-#the one C file
-add_executable(EconomyParticipants EconomyParticipants.cpp)
-add_executable(Manufactur Manufactur.cpp)
-add_executable(MovingTrader MovingTrader.cpp)
-add_executable(Traders Traders.cpp)
-
-foreach(program ${PROGRAMS})
-  add_executable(${program} ${program}.cpp)
-  target_link_libraries(${program} ${CORELIBS})
-endforeach(program)
+list(APPEND SRC
+${CMAKE_CURRENT_LIST_DIR}/EconomyParticipants
+${CMAKE_CURRENT_LIST_DIR}/Manufactur
+${CMAKE_CURRENT_LIST_DIR}/MovingTrader
+${CMAKE_CURRENT_LIST_DIR}/Traders
+)
+set(SRC "${SRC}" PARENT_SCOPE)
