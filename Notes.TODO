@@ -1,6 +1,24 @@
 
 
 
+Market:
+ ☐ one per village
+ ☐ has traders that gets stuff from manufacturs for orders
+ ☐ manufacturs can send stuff or order stuff
+ ☐ buys and sells to moving traders
+
+Village:
+ ☐ keeps track of manufacturers and markets
+ ☐ offers place and ressources
+ ☐ offers people
+ ☐ 
+
+TradersGuild:
+ ☐ keeps track of moving traders
+
+World:
+ ☐ Keeps track of villages (ways+distance)
+ ☐ add ressources
 
 Traders:
  ☐ items als Vektor verwalten
@@ -10,6 +28,8 @@ Manufactur:
  ☐ Preis am Angebot/Bestand selbst bestimmen, nicht automatisch verkaufen.
  ☐ Kaufen und verkaufen funktioniert noch nicht 100%
  ☐ verschiedene produkte produzieren und konsumieren. Mit Vektoren managen?
+ ☐ send/order stuff from market
+ ☐ sell stuff to market-traders
  Consumers:
  ☐ Forderung an Händler stellen?
  ☐ Kaufen und verkaufen funktioniert noch nicht 100%
@@ -19,7 +39,7 @@ Manufactur:
  ☐ Dienstleistungen?
 
 Overall:
-  ☐ Consumers und Producers zu manufactur zusammenführen
+  ✔ Consumers und Producers zu manufactur zusammenführen @done (14-10-10 15:36)
   ☐ life important ressources
   ☐ Tradables
   ☐ Environment

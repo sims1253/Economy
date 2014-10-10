@@ -1,15 +1,13 @@
 #pragma once
-#include "../Participants/Manufactur.h"
+#include "village.h"
 #include "catalogue.h"
 
 class world
 {
 private:
-	Manufactur *producer;
-	Manufactur *consumer;
+std::vector<village> villages;
 public:
 	world(void);
 	~world(void);
 	void update();
-	void trade();
 	};
