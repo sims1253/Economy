@@ -2,7 +2,7 @@
 #include "Traders.h"
 
 
-class Manufactur:
+class Manufacture:
 	public Traders
 {
 protected:
@@ -17,8 +17,8 @@ protected:
 	void decreaseConsumption(char change);
 
 public:
-	Manufactur(const int productionAmount, const int productionCapacity, const int consumeAmount, const int consumeMinimum, const int consumeCapacity, const int money, const product item);
-	~Manufactur();
+	Manufacture(const int productionAmount, const int productionCapacity, const int consumeAmount, const int consumeMinimum, const int consumeCapacity, const int money, const product item);
+	~Manufacture();
 	bool update(char changeProduction, char changeConsumption);
 	void dump(int id);
 	
