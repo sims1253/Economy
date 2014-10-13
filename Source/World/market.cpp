@@ -1,16 +1,16 @@
-#include "market.h"
+#include "Market.h"
 
 
-market::market(void)
+Market::Market(void)
 {
 
 }
 
-market::~market(void)
+Market::~Market(void)
 {
 }
 
-void market::update()
+void Market::update()
 {
 }
 

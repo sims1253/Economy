@@ -4,20 +4,20 @@
 	This is The "Main" class that is handling all the stuff
 */
 
-#include "world.h"
+#include "World.h"
 
 
-world::world(void)
+World::World(void)
 {
 	this->consumer = new Manufactur(0, 3, 1, 1, 5, 200, FOOD);
 	this->producer = new Manufactur(2, 3, 1, 1, 5, 200, FOOD);
 }
 
-world::~world(void)
+World::~World(void)
 {
 }
 
-void world::update()
+void World::update()
 	{
 	consumer->update(0, 0);
 	consumer->dump(1);

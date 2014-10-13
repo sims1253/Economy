@@ -1,14 +1,14 @@
 #pragma once
 #include "../Participants/traders.h"
-#include "village.h"
+#include "Village.h"
 #include "catalogue.h"
 
-class market
+class Market
 {
 private:
-	village *homeTown;
+	Village *homeTown;
 public:
-	market(void);
-	~market(void);
+	Market(void);
+	~Market(void);
 	void update();
 	};

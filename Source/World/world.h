@@ -1,13 +1,13 @@
 #pragma once
-#include "village.h"
+#include "Village.h"
 #include "catalogue.h"
 
-class world
+class World
 {
 private:
-std::vector<village> villages;
+std::vector<Village> villages;
 public:
-	world(void);
-	~world(void);
+	World(void);
+	~World(void);
 	void update();
 	};

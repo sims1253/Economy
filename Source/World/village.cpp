@@ -1,16 +1,16 @@
-#include "village.h"
+#include "Village.h"
 
 
-village::village(void)
+Village::Village(void)
 {
 
 }
 
-village::~village(void)
+Village::~Village(void)
 {
 }
 
-void village::update()
+void Village::update()
 {
 }
 
