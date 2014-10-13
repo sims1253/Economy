@@ -1,13 +1,12 @@
-// This file is part of CE3D. License: GPL3
 
-#ifndef CE3D_CE3D_CONFIG_H_IN
-#define CE3D_CE3D_CONFIG_H_IN
+#ifndef Economy_Economy_CONFIG_H_IN
+#define Economy_Economy_CONFIG_H_IN
 
-#define CE3D_VERSION_MAJOR      @CE3D_VERSION_MAJOR@
-#define CE3D_VERSION_MINOR      @CE3D_VERSION_MINOR@
-#define CE3D_VERSION_MICRO      @CE3D_VERSION_MICRO@
+#define Economy_VERSION_MAJOR      @Economy_VERSION_MAJOR@
+#define Economy_VERSION_MINOR      @Economy_VERSION_MINOR@
+#define Economy_VERSION_MICRO      @Economy_VERSION_MICRO@
 
 #define GIT_BRANCH              @GIT_BRANCH@
 #define GIT_HEAD                @GIT_HEAD@
 
-#endif /* CE3D_CE3D_CONFIG_H_IN */
+#endif /* Economy_Economy_CONFIG_H_IN */

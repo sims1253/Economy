@@ -49,13 +49,13 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
 add_subdirectory("Participants")
 add_subdirectory("World")
 
-add_library(Economy SHARED ${SRC})
+#add_library(Economy SHARED ${SRC})
 
-install(TARGETS Economy LIBRARY DESTINATION lib)
+#install(TARGETS Economy LIBRARY DESTINATION lib)
 
-install(DIRECTORY              ${CMAKE_CURRENT_LIST_DIR}/
-        DESTINATION            include/Economy
-        FILES_MATCHING PATTERN "*.h")
+#install(DIRECTORY              ${CMAKE_CURRENT_LIST_DIR}/
+#        DESTINATION            include/Economy
+#        FILES_MATCHING PATTERN "*.h")
 
 # Documentation
 find_package(Doxygen)
