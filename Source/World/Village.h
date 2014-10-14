@@ -1,5 +1,5 @@
 #pragma once
-#include "../Participants/Manufactur.h"
+#include "../Participants/Manufacture.h"
 #include "../Participants/MovingTrader.h"
 #include "World.h"
 #include "catalogue.h"
@@ -7,9 +7,9 @@
 class Village
 {
 private:
-	std::vector<Manufactur> manufacturers;
+	std::vector<Manufacture> manufacturers;
 	std::vector<MovingTrader> traders;
-	world *homeWorld;
+	World *homeWorld;
 public:
 	Village(void);
 	~Village(void);

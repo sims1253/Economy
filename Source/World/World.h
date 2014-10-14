@@ -10,4 +10,4 @@ public:
 	World(void);
 	~World(void);
 	void update();
-	};
+};
