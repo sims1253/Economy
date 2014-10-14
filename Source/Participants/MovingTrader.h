@@ -6,11 +6,10 @@ class MovingTrader :
 	public Traders
 {
 protected:
-	int consumeAmount;
-	void MovingTrader::decreaseConsumption(const char change);
-	void MovingTrader::increaseConsumption(const char change);
-	void MovingTrader::decreaseProduction(const char change);
-	void MovingTrader::increaseProduction(const char change);
+	void decreaseConsumption(const char change);
+	void increaseConsumption(const char change);
+	void decreaseProduction(const char change);
+	void increaseProduction(const char change);
 	int productionAmount;
 	int productionCapacity;
 	int consumeAmount;
