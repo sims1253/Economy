@@ -7,6 +7,15 @@ class MovingTrader :
 {
 protected:
 	int consumeAmount;
+	void MovingTrader::decreaseConsumption(const char change);
+	void MovingTrader::increaseConsumption(const char change);
+	void MovingTrader::decreaseProduction(const char change);
+	void MovingTrader::increaseProduction(const char change);
+	int productionAmount;
+	int productionCapacity;
+	int consumeAmount;
+	int consumeMinimum;
+	int consumeCapacity;
 public:
 	MovingTrader(const int productionAmount, const int productionCapacity, const int consumeAmount, const int consumeMinimum, const int consumeCapacity, const int money, const product item);
 	~MovingTrader();
