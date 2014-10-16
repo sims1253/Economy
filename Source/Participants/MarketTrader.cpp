@@ -90,7 +90,6 @@ Then calls consumers::upgrade if >0, consumers::downgrade if <0 or does nothing.
 //TODO nice doc pls
 bool MarketTrader::update(char changeProduction, char changeConsumption)
 {
-	eat();
 	if (alive){
 		//Produce part
 		if (stock[item] < storageCapacity[item])
@@ -120,7 +119,7 @@ bool MarketTrader::update(char changeProduction, char changeConsumption)
 void MarketTrader::dump(int id)
 {
 
-	char *productNames[] =
+	std::string productNames[] =
 	{
 		"WATER",
 		"FOOD",

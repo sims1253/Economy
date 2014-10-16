@@ -1,8 +1,8 @@
 #pragma once
 #include "../Participants/Manufacture.h"
 #include "../Participants/MovingTrader.h"
-#include "World.h"
 #include "catalogue.h"
+class World;
 
 class Village
 {

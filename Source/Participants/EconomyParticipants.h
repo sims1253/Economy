@@ -1,5 +1,7 @@
 #pragma once
-
+#include <vector>
+#include <iostream>
+#include <string>
 #include "../World/catalogue.h"
 
 

@@ -1,23 +1,19 @@
 #include <iostream>
 #include <cstdio>
-#include "World/world.h"
+#include "World/World.h"
 
 
 int main(){
-	std::cout << "Hello world\npress enter to continue ";
+	std::cout << "Hello World\npress enter to continue ";
 	std::getchar();
 	int i = 10;
-	world welt;
+	World welt;
 
 	std::getchar();
 	while(i){
 		std::cout << "========================================================== \n";
 		welt.update();
 		std::cout << "\nUpdate \n";
-
-		
-		welt.trade();
-		std::cout << "\nTrade \n";
 
 
 

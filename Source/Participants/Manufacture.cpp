@@ -40,7 +40,7 @@ Manufacture::~Manufacture(void)
 /**
 \brief Increases the productionAmount by 1 if productionCapacity is not already reached.
 */
-void Manufacture::increaseProduction(const char change)
+void Manufacture::increaseProduction(unsigned short int change)
 {
 	if (productionAmount<productionCapacity)
 		productionAmount++;
@@ -50,7 +50,7 @@ void Manufacture::increaseProduction(const char change)
 /**
 \brief Reduces the productionAmount by 1. Can't be lower than 0.
 */
-void Manufacture::decreaseProduction(const char change)
+void Manufacture::decreaseProduction(unsigned short int change)
 {
 	if (productionAmount>0)
 		productionAmount--;
@@ -61,7 +61,7 @@ void Manufacture::decreaseProduction(const char change)
 /**
 \brief Increases the consumeAmount by 1 if consumeCapacity is not already reached.
 */
-void Manufacture::increaseConsumption(const char change)
+void Manufacture::increaseConsumption(unsigned short int change)
 {
 	if (consumeAmount<consumeCapacity)
 		consumeAmount++;
@@ -70,7 +70,7 @@ void Manufacture::increaseConsumption(const char change)
 /**
 \brief Reduces the consumeAmount by 1 if consumeMinimum is not already reached.
 */
-void Manufacture::decreaseConsumption(const char change)
+void Manufacture::decreaseConsumption(unsigned short int change)
 {
 	if (consumeAmount>consumeMinimum)
 		consumeAmount++;
@@ -90,8 +90,7 @@ Then calls consumers::upgrade if >0, consumers::downgrade if <0 or does nothing.
 //TODO nice doc pls
 bool Manufacture::update(char changeProduction, char changeConsumption)
 {
-	eat();
-	if (alive){
+		if (alive){
 		//Produce part
 		if (stock[item] < storageCapacity[item])
 			stock[item] += productionAmount;
@@ -120,7 +119,7 @@ bool Manufacture::update(char changeProduction, char changeConsumption)
 	void Manufacture::dump(int id)
 	{
 
-		char *productNames[] =
+		std::string productNames[] =
 		{
 			"WATER",
 			"FOOD",
