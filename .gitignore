@@ -171,3 +171,6 @@ Economy/RCa03036
 *.xml
 *.xslt
 *.xsd
+*.cppcheck
+*.o
+Source/economy

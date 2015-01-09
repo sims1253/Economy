@@ -1,25 +1,25 @@
 #pragma once
 #include "Traders.h"
+#include <algorithm>
+#include <memory>
+#include <iostream>
 
 
 class Manufacture:
 	public Traders
 {
 protected:
-	int productionAmount;
-	int productionCapacity;
-	int consumeAmount;
-	int consumeMinimum;
-	int consumeCapacity;
-	void increaseProduction(unsigned short int change);
-	void decreaseProduction(unsigned short int change);
-	void increaseConsumption(unsigned short int change);
-	void decreaseConsumption(unsigned short int change);
+	//Find entries via product enum, first: productionAmount second: productionCapacity
+	std::map<product, std::pair<int, int>> production;
+	//first: item, second.first: amount, second.second: minimum
+	//Find entries via product enum, first: consumtionAmount second : consumtionMinimum
+	std::map<product, std::pair<int, int>> consumtion;	
 
 public:
-	Manufacture(const int productionAmount, const int productionCapacity, const int consumeAmount, const int consumeMinimum, const int consumeCapacity, const int money, const product item);
+	Manufacture(std::map<product, std::pair<int, int>> production, std::map<product, std::pair<int, int>> consumtion, const int money);
 	~Manufacture();
-	bool update(char changeProduction, char changeConsumption);
-	void dump(int id);
+	bool update();
+	short int changeProduction(product item, short int change);
+	short int changeConsumption(product item, short int change);
 	
 };

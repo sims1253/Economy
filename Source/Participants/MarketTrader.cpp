@@ -12,22 +12,9 @@
 \param inputMoney starting money.
 */
 //TODO use vectors for items. Also make it possible to have different products in conumption and production
-MarketTrader::MarketTrader(const int productionAmount, const int productionCapacity, const int consumeAmount, const int consumeMinimum, const int consumeCapacit, const int money, const product item)
+MarketTrader::MarketTrader()
 {
-	this->item = item;
-	this->consumeAmount = consumeAmount;
-	this->consumeMinimum = consumeMinimum;
-	this->consumeCapacity = consumeCapacit;
-	this->money = money;;
-	this->productionAmount = productionAmount;
-	this->productionCapacity = productionCapacity;
-	this->alive = 1;
 
-	// TODO initialize vectors
-	this->storageCapacity.push_back(4);
-	this->storageCapacity.push_back(4);
-	this->stock.push_back(1);
-	this->stock.push_back(1);
 }
 
 /*
@@ -37,44 +24,6 @@ MarketTrader::~MarketTrader(void)
 {
 }
 
-/**
-\brief Increases the productionAmount by 1 if productionCapacity is not already reached.
-*/
-void MarketTrader::increaseProduction(const char change)
-{
-	if (productionAmount<productionCapacity)
-		productionAmount++;
-	return;
-}
-
-/**
-\brief Reduces the productionAmount by 1. Can't be lower than 0.
-*/
-void MarketTrader::decreaseProduction(const char change)
-{
-	if (productionAmount>0)
-		productionAmount--;
-	return;
-
-}
-
-/**
-\brief Increases the consumeAmount by 1 if consumeCapacity is not already reached.
-*/
-void MarketTrader::increaseConsumption(const char change)
-{
-	if (consumeAmount<consumeCapacity)
-		consumeAmount++;
-}
-
-/**
-\brief Reduces the consumeAmount by 1 if consumeMinimum is not already reached.
-*/
-void MarketTrader::decreaseConsumption(const char change)
-{
-	if (consumeAmount>consumeMinimum)
-		consumeAmount++;
-}
 
 /**
 \brief Updates the state of the MarketTrader.
@@ -88,53 +37,7 @@ Then consumes(destroys) items until storage is empty or consumeAmount is reached
 Then calls consumers::upgrade if >0, consumers::downgrade if <0 or does nothing.
 */
 //TODO nice doc pls
-bool MarketTrader::update(char changeProduction, char changeConsumption)
+bool MarketTrader::update()
 {
-	if (alive){
-		//Produce part
-		if (stock[item] < storageCapacity[item])
-			stock[item] += productionAmount;
-		if (changeProduction > 0)
-			increaseProduction(1);
-		else if (changeProduction < 0)
-			decreaseProduction(1);
-
-		//Consume part
-		if (stock[item]>0)
-			stock[item] -= consumeAmount;
-		if (changeConsumption > 0)
-			increaseConsumption(1);
-		if (changeConsumption < 0)
-			decreaseConsumption(1);
-		return true;
-	}
-	else
-	{
-		std::cout << "This MarketTrader is dead!\n";
-		return false;
-	}
-}
-
-//just a debug dump of data
-void MarketTrader::dump(int id)
-{
-
-	std::string productNames[] =
-	{
-		"WATER",
-		"FOOD",
-		"TOOLS"
-	};
-	std::cout << "-------------------------------------------- \n";
-	std::cout << "MarketTrader: " << id << std::endl;
-	std::cout << "Produces " << this->productionAmount << " of " << productNames[this->item] << ". Has " << this->money << " moneys." << std::endl;
-	std::cout << "Consumes " << this->consumeAmount << " of " << productNames[this->item] << ". Has " << this->money << " moneys." << std::endl;
-	std::cout << "Storage: \n" << productNames[FOOD] << ": " << this->stock[FOOD] << "/" << this->storageCapacity[FOOD] << std::endl << std::endl;
-}
-
-//returns how much there is to trade
-//TODO doc pls
-int MarketTrader::tradable(product item)
-{
-	return stock[item];
+	return false;
 }

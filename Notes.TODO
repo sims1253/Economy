@@ -1,8 +1,8 @@
-
+      
 
 
 Market:
- ☐ one per village
+ ✔ one per village @done (14-12-29 20:08)
  ☐ has traders that gets stuff from manufacturs for orders
  ☐ manufacturs can send stuff or order stuff
  ☐ buys and sells to moving traders
@@ -10,8 +10,7 @@ Market:
 Village:
  ☐ keeps track of manufacturers and markets
  ☐ offers place and ressources
- ☐ offers people
- ☐ 
+ ☐ offers people 
 
 TradersGuild:
  ☐ keeps track of moving traders
@@ -26,9 +25,8 @@ Traders:
 
 Manufactur:
  ☐ Preis am Angebot/Bestand selbst bestimmen, nicht automatisch verkaufen.
- ☐ Kaufen und verkaufen funktioniert noch nicht 100%
  ☐ verschiedene produkte produzieren und konsumieren. Mit Vektoren managen?
- ☐ send/order stuff from market
+ ☐ offer/order stuff from market
  ☐ sell stuff to market-traders
  Consumers:
  ☐ Forderung an Händler stellen?
@@ -44,7 +42,8 @@ Overall:
   ☐ Tradables
   ☐ Environment
   ☐ Condition
-  ☐ Verhalten beim "sterben"
+  ☐ Action on death
+  ☐ Use vectors with pairs (item, some value) or have the item implicit as the position in the vector
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:

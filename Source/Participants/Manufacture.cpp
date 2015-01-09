@@ -1,6 +1,7 @@
 #include "Manufacture.h"
 
 
+
 /**
 \brief Constructor for a Manufacture.
 \param inputProduct product that is consumed and produced.
@@ -11,23 +12,20 @@
 \param inputProductionCapacity max amount that can be produced.
 \param inputMoney starting money.
 */
-//TODO use vectors for items. Also make it possible to have different products in conumption and production
-Manufacture::Manufacture(const int productionAmount, const int productionCapacity, const int consumeAmount, const int consumeMinimum, const int consumeCapacit, const int money, const product item)
+//TODO use vectors for items. Also make it possible to have different products in 
+//conumption and production
+
+Manufacture::Manufacture(std::map<product, std::pair<int, int>> production, std::map<product, std::pair<int, int>> consumtion, const int money)
+	:consumtion(consumtion), production(production)
 	{
-		this->item = item;
-		this->consumeAmount = consumeAmount;
-		this->consumeMinimum = consumeMinimum;
-		this->consumeCapacity = consumeCapacit;
 		this->money = money;;
-		this->productionAmount = productionAmount;
-		this->productionCapacity = productionCapacity;
 		this->alive = 1;
 
 		// TODO initialize vectors
-		this->storageCapacity.push_back(4);
-		this->storageCapacity.push_back(4);
-		this->stock.push_back(1);
-		this->stock.push_back(1);
+		storageCapacity[WATER] = 4;
+		storageCapacity[FOOD] = 4;
+		stock[WATER] = 1;
+		stock[FOOD] = 1;
 	}
 
 /*
@@ -40,41 +38,63 @@ Manufacture::~Manufacture(void)
 /**
 \brief Increases the productionAmount by 1 if productionCapacity is not already reached.
 */
-void Manufacture::increaseProduction(unsigned short int change)
+short int Manufacture::changeProduction(product item, short int change)
 {
-	if (productionAmount<productionCapacity)
-		productionAmount++;
-	return;
+	//TODO use find_if()
+	auto itemFound = production.find(item);
+	if (itemFound == production.end())
+		return 0;
+
+	if (change < 0)
+	{
+		if (itemFound->second.first + change >= 0)
+			itemFound->second.first += change;
+		else
+		{
+			return -1; //-1 code if production would go negative
+		}
+	}
+	else
+	{
+		if (itemFound->second.first + change> itemFound->second.second)
+			itemFound->second.first += change;
+		else
+		{
+			return -2; //-2 code if production would exceede capacity
+		}
+	}
+	
+	return 1;
 }
 
-/**
-\brief Reduces the productionAmount by 1. Can't be lower than 0.
-*/
-void Manufacture::decreaseProduction(unsigned short int change)
-{
-	if (productionAmount>0)
-		productionAmount--;
-	return;
-
-}
 
 /**
 \brief Increases the consumeAmount by 1 if consumeCapacity is not already reached.
 */
-void Manufacture::increaseConsumption(unsigned short int change)
+short int Manufacture::changeConsumption(product item, short int change)
 {
-	if (consumeAmount<consumeCapacity)
-		consumeAmount++;
+	//TODO use find_if()
+	auto itemFound = consumtion.find(item);
+	if (itemFound == consumtion.end())
+		return 0;
+
+	if (change < 0)
+	{
+		if (itemFound->second.first + change >= itemFound->second.second)
+			itemFound->second.first += change;
+		else
+		{
+			return -1; //-1 code if consumtion would go below minimum
+		}
+	}
+	else
+	{
+			itemFound->second.first += change;
+	}
+	
+	return 1;
 }
 
-/**
-\brief Reduces the consumeAmount by 1 if consumeMinimum is not already reached.
-*/
-void Manufacture::decreaseConsumption(unsigned short int change)
-{
-	if (consumeAmount>consumeMinimum)
-		consumeAmount++;
-}
 
 /**
 \brief Updates the state of the Manufacture.
@@ -88,47 +108,40 @@ Then consumes(destroys) items until storage is empty or consumeAmount is reached
 Then calls consumers::upgrade if >0, consumers::downgrade if <0 or does nothing.
 */
 //TODO nice doc pls
-bool Manufacture::update(char changeProduction, char changeConsumption)
+//TODO Rework pls
+//TODO needs something to change production and consumption 
+bool Manufacture::update()
 {
 		if (alive){
 		//Produce part
-		if (stock[item] < storageCapacity[item])
-			stock[item] += productionAmount;
-		if (changeProduction > 0)
-			increaseProduction(1);
-		else if (changeProduction < 0)
-			decreaseProduction(1);
+			auto tempStock = std::make_shared<std::map<product, int>>(stock);
+			auto tempStorageCapacity = std::make_shared<std::map<product, int>>(storageCapacity);
+			for_each(begin(production), end(production), [tempStock, tempStorageCapacity](std::pair<product, std::pair<int, int>> &element)
+		{	//If capacity>=stock+production -> stock+=production else stock=capacity
+			if ((*tempStorageCapacity)[element.first] >= (*tempStock)[element.first]+element.second.first)
+				(*tempStock)[element.first] += element.second.first;
+			else
+				(*tempStock)[element.first] = (*tempStorageCapacity)[element.first];
+			//TODO what to do if full / not enough capacity
+		});
+			//TODO change production
 
-		//Consume part
-		if (stock[item]>0)
-			stock[item] -= consumeAmount;
-		if (changeConsumption > 0)
-			increaseConsumption(1);
-		if (changeConsumption < 0)
-			decreaseConsumption(1);
+			//Consume part
+			for_each(begin(consumtion), end(consumtion), [tempStock, tempStorageCapacity](std::pair<product, std::pair<int, int>> &element)
+		{	//If stock-consumtion>= -> stock-=consumtion else 0
+			if (((*tempStock)[element.first] - element.second.first) >= 0)
+				(*tempStock)[element.first] -= element.second.first;
+			else
+				(*tempStock)[element.first] = 0;
+			//TODO what to do if empty / not enough stock
+		});
+			//TODO change consumtion
+		
 		return true;
 	}
 	else
 	{
-		std::cout << "This Manufacture is dead!\n";
+		std::cout << "This Manufacture is dead! Buhu!" << std::endl;
 		return false;
 	}
 }
-
-//just a debug dump of data
-	void Manufacture::dump(int id)
-	{
-
-		std::string productNames[] =
-		{
-			"WATER",
-			"FOOD",
-			"TOOLS"
-		};
-		std::cout << "-------------------------------------------- \n";
-		std::cout << "Manufacture: "<< id << std::endl;
-		std::cout << "Produces " << this->productionAmount << " of " << productNames[this->item] << ". Has " << this->money << " moneys." << std::endl;
-		std::cout << "Consumes " << this->consumeAmount << " of " << productNames[this->item] << ". Has " << this->money << " moneys." << std::endl;
-		std::cout << "Storage: \n" << productNames[FOOD] << ": " << this->stock[FOOD] << "/" << this->storageCapacity[FOOD] << std::endl << std::endl;
-	}
-

@@ -1,14 +1,18 @@
 #pragma once
-#include "../Participants/traders.h"
-#include "Village.h"
+#include "../Participants/Traders.h"
+#include "../Participants/Manufacture.h"
 #include "catalogue.h"
+
+class Village;
 
 class Market
 {
 private:
-	Village *homeTown;
+	std::weak_ptr<Village> homeTown;
+
 public:
-	Market(void);
+	Market(std::shared_ptr<Village> homeTown);
 	~Market(void);
 	void update();
+	void start(std::vector<std::shared_ptr<Manufacture>> manufacturers);
 	};

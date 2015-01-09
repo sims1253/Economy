@@ -1,14 +1,14 @@
 #pragma once
-#include <vector>
-#include <iostream>
+#include<map>
 #include "../Participants/EconomyParticipants.h"
 class Traders :
 	public EconomyParticipants
 {
 protected:
-	std::vector<unsigned int> stock;
-	std::vector<unsigned int> storageCapacity;
-	product item;
+	// first: item, second: stock
+	std::map<product, int> stock;
+	//first: item, second storageCapacity
+	std::map<product, int> storageCapacity;
 	int money;
 
 public:
