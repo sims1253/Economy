@@ -15,8 +15,8 @@
 //TODO use vectors for items. Also make it possible to have different products in 
 //conumption and production
 
-Manufacture::Manufacture(std::map<product, std::pair<int, int>> production, std::map<product, std::pair<int, int>> consumtion, const int money)
-	:consumtion(consumtion), production(production)
+Manufacture::Manufacture(std::map<product, std::pair<int, int> > production, std::map<product, std::pair<int, int> > consumtion, const int money)
+	: production(production), consumtion(consumtion) 
 	{
 		this->money = money;;
 		this->alive = 1;
@@ -114,9 +114,11 @@ bool Manufacture::update()
 {
 		if (alive){
 		//Produce part
-			auto tempStock = std::make_shared<std::map<product, int>>(stock);
-			auto tempStorageCapacity = std::make_shared<std::map<product, int>>(storageCapacity);
-			for_each(begin(production), end(production), [tempStock, tempStorageCapacity](std::pair<product, std::pair<int, int>> &element)
+			auto tempStock = std::make_shared<std::map<const product, int>>(stock);
+			auto tempStorageCapacity = std::make_shared<std::map<const product, int>>(storageCapacity);
+
+			for_each(begin(production), end(production), 
+				[&tempStock, &tempStorageCapacity](std::pair<product, std::pair<int, int>> &element)
 		{	//If capacity>=stock+production -> stock+=production else stock=capacity
 			if ((*tempStorageCapacity)[element.first] >= (*tempStock)[element.first]+element.second.first)
 				(*tempStock)[element.first] += element.second.first;
@@ -127,7 +129,8 @@ bool Manufacture::update()
 			//TODO change production
 
 			//Consume part
-			for_each(begin(consumtion), end(consumtion), [tempStock, tempStorageCapacity](std::pair<product, std::pair<int, int>> &element)
+			for_each(begin(consumtion), end(consumtion), 
+				[&tempStock, &tempStorageCapacity](std::pair<product, std::pair<int, int>> &element)
 		{	//If stock-consumtion>= -> stock-=consumtion else 0
 			if (((*tempStock)[element.first] - element.second.first) >= 0)
 				(*tempStock)[element.first] -= element.second.first;

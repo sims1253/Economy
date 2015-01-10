@@ -1,9 +1,9 @@
 #! /bin/make
 
-GPP      := g++
+GPP      := clang++
 SRCS     := $(shell find -regex .*\.cpp)
 OBJS     := $(addsuffix .o,$(basename $(SRCS)))
-CPPFLAGS :=
+CPPFLAGS := -g -std=c++11 -Wall -pedantic
 TARGET   := economy
 
 default: build

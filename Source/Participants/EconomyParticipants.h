@@ -11,5 +11,5 @@ protected:
 	bool alive;
 
 public:
-	virtual bool update(char changeProductivity, char changeConsumption) = 0;
+	virtual bool update() = 0;
 };

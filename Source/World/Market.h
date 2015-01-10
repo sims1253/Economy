@@ -13,6 +13,6 @@ private:
 public:
 	Market(std::shared_ptr<Village> homeTown);
 	~Market(void);
-	void update();
+	bool update();
 	void start(std::vector<std::shared_ptr<Manufacture>> manufacturers);
 	};

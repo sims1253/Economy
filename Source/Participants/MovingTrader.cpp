@@ -47,7 +47,7 @@ Then consumes(destroys) items until storage is empty or consumeAmount is reached
 Then calls consumers::upgrade if >0, consumers::downgrade if <0 or does nothing.
 */
 //TODO nice doc pls
-bool MovingTrader::update(char changeProduction, char changeConsumption)
+bool MovingTrader::update()
 {
 	return false;
 	//TODO everything

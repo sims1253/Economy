@@ -6,9 +6,9 @@ class Traders :
 {
 protected:
 	// first: item, second: stock
-	std::map<product, int> stock;
+	std::map<const product, int> stock;
 	//first: item, second storageCapacity
-	std::map<product, int> storageCapacity;
+	std::map<const product, int> storageCapacity;
 	int money;
 
 public:
