@@ -21,5 +21,7 @@ public:
 	bool update();
 	short int changeProduction(product item, short int change);
 	short int changeConsumption(product item, short int change);
+	void updateProduction(std::pair<product, std::pair<int, int>> &element);
+	void updateConsumption(std::pair<product, std::pair<int, int>> &element);
 	
 };

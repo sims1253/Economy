@@ -10,9 +10,9 @@ Market::~Market(void)
 
 }
 
-void Market::update(void)
+bool Market::update(void)
 {
-
+	return 1;
 }
 
 void Market::start(std::vector<std::shared_ptr<Manufacture>> manufacturers)
