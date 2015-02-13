@@ -1,6 +1,6 @@
 #include "Market.h"
 
-Market::Market(std::shared_ptr<Village> village)
+Market::Market(const Village *village)
 {
 	this->homeTown = village;
 }

@@ -8,10 +8,10 @@ class Village;
 class Market
 {
 private:
-	std::weak_ptr<Village> homeTown;
+	const Village *homeTown;
 
 public:
-	Market(std::shared_ptr<Village> homeTown);
+	Market(const Village *homeTown);
 	~Market(void);
 	bool update();
 	void start(std::vector<std::shared_ptr<Manufacture>> manufacturers);

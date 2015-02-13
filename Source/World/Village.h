@@ -11,14 +11,14 @@ class Village
 private:
 	std::vector<std::shared_ptr<Manufacture>> manufacturers;
 	std::vector<std::shared_ptr<MovingTrader>> traders;
-	std::shared_ptr<Market> villageMarket = std::make_shared<Market>(std::make_shared<Village>(this));
-	std::weak_ptr<World> homeWorld;
+	Market villageMarket;
+	const World *homeWorld;
 	// TODO Offers and needs
 	// TODO Inhabitants
 	// TODO Place for buildings
 	// TODO Ressources available
 public:
-	Village(std::shared_ptr<World> world);
+	Village(const World *homeWorld);
 	~Village(void);
 	void update();
 	};

@@ -4,7 +4,7 @@
 class World
 {
 private:
-std::vector<std::shared_ptr<Village>> villages;
+std::vector<std::unique_ptr<Village>> villages;
 public:
 	World(void);
 	World(const int villageCount);

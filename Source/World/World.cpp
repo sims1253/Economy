@@ -10,8 +10,9 @@ World::World(void)
 	
 	for (int i = 5; i > 0; i--)
 	{
-		auto temp = std::make_shared<Village>(std::make_shared<World>(this));
-		villages.push_back(temp);
+		//TODO c++14 gives you std::make_unique
+		auto temp = std::unique_ptr<Village>(new Village(this));
+		villages.push_back(std::move(temp));
 	}
 }
 
@@ -20,8 +21,9 @@ World::World(const int villageCount)
 
 	for (int i = villageCount; i > 0; i--)
 	{
-		auto temp = std::make_shared<Village>(std::make_shared<World>(this));
-		villages.push_back(temp);
+		//TODO c++14 gives you std::make_unique
+		auto temp = std::unique_ptr<Village>(new Village(this));
+		villages.push_back(std::move(temp));
 	}
 }
 

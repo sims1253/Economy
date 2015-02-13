@@ -1,6 +1,6 @@
 #! /bin/make
 
-GPP      := clang++
+GPP      := g++
 SRCS     := $(shell find -regex .*\.cpp)
 OBJS     := $(addsuffix .o,$(basename $(SRCS)))
 CPPFLAGS := -g -std=c++11 -Wall -pedantic

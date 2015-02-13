@@ -16,17 +16,17 @@
 //conumption and production
 
 Manufacture::Manufacture(std::map<const product, std::pair<int, int> > production, std::map<const product, std::pair<int, int> > consumtion, const int money)
-	: production(production), consumtion(consumtion) 
-	{
-		this->money = money;;
-		this->alive = 1;
+	: production(production), consumtion(consumtion)
+{
+	this->money = money;;
+	this->alive = 1;
 
-		// TODO initialize vectors
-		storageCapacity[WATER] = 4;
-		storageCapacity[FOOD] = 4;
-		stock[WATER] = 1;
-		stock[FOOD] = 1;
-	}
+	// TODO initialize vectors
+	storageCapacity[WATER] = 4;
+	storageCapacity[FOOD] = 4;
+	stock[WATER] = 1;
+	stock[FOOD] = 1;
+}
 
 /*
 \brief deconstructor
@@ -63,7 +63,7 @@ short int Manufacture::changeProduction(product item, short int change)
 			return -2; //-2 code if production would exceede capacity
 		}
 	}
-	
+
 	return 1;
 }
 
@@ -89,45 +89,12 @@ short int Manufacture::changeConsumption(product item, short int change)
 	}
 	else
 	{
-			itemFound->second.first += change;
+		itemFound->second.first += change;
 	}
-	
+
 	return 1;
 }
 
-/**
-//TODO doc pls
-//This is a test as lambda dont like me
-**/
-void Manufacture::updateProduction(std::pair<product, std::pair<int, int>> &element){
-	//If capacity>=stock+production -> stock+=production else stock=capacity
-	if (storageCapacity[element.first] >= stock[element.first] + element.second.first)
-	{
-		stock[element.first] += element.second.first;
-	}
-	else
-	{
-		stock[element.first] = storageCapacity[element.first];
-	}
-
-	return;
-}
-
-/**
-//TODO doc pls
-//This is a test as lambda dont like me
-**/
-void Manufacture::updateConsumption(std::pair<product, std::pair<int, int>> &element){
-	//If stock-consumtion>= -> stock-=consumtion else 0
-	if ((stock[element.first] - element.second.first) >= 0)
-	{
-		stock[element.first] -= element.second.first;
-	}
-	else
-	{
-		stock[element.first] = 0;
-	}
-}
 
 
 /**
@@ -148,17 +115,35 @@ bool Manufacture::update()
 {
 	if (alive)
 	{
-	//Produce part
-		std::for_each(begin(production), end(production), &Manufacture::updateProduction);
-	//TODO what to do if full / not enough capacity
-	//TODO change production
+		//Produce part
+		for (std::map<const product, std::pair<int, int> >::iterator iter = production.begin(); iter != production.end(); iter++){
+			if ((stock[iter->first] - iter->second.first) >= 0)
+			{
+				stock[iter->first] -= iter->second.first;
+			}
+			else
+			{
+				stock[iter->first] = 0;
+			}
+		}
+		//TODO what to do if full / not enough capacity
+		//TODO change production
 
-	//Consume part
-		std::for_each(begin(consumtion), end(consumtion), &Manufacture::updateConsumption);
-	//TODO what to do if empty / not enough stock
-	//TODO change consumtion
-		
-	return true;
+		//Consume part
+		for (std::map<const product, std::pair<int, int> >::iterator iter = production.begin(); iter != production.end(); iter++){
+			if ((stock[iter->first] - iter->second.first) >= 0)
+			{
+				stock[iter->first] -= iter->second.first;
+			}
+			else
+			{
+				stock[iter->first] = 0;
+			}
+		}
+		//TODO what to do if empty / not enough stock
+		//TODO change consumtion
+
+		return true;
 	}
 	else
 	{
