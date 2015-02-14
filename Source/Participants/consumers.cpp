@@ -12,11 +12,11 @@
 consumers::consumers(const product inputProduct, const int inputAmount, const int inputCapacity, const int inputMinimum, const int inputMoney)
 	{
 	this->item					= inputProduct;
-	this->consumeAmount			= inputAmount;
+	this->consumeAmount 		= inputAmount;
 	this->consumeMinimum		= inputMinimum;
 	this->consumeCapacity		= inputCapacity;
-	this->money					= inputMoney;
-	this->alive					= 1;
+	this->money 				= inputMoney;
+	this->alive 				= 1;
 
 	// TODO initialize vectors
 	this->storage.push_back(4);
@@ -36,7 +36,7 @@ consumers::~consumers(void)
 \brief Updates the state of the consumer.
 \param change change in consuming.
 
-Consumes(destroys) items until storage is empty or consumeAmount is reached. 
+Consumes(destroys) items until storage is empty or consumeAmount is reached.
 Then calls consumers::upgrade if >0, consumers::downgrade if <0 or does nothing.
 */
 // TODO: eat und consume can be the same if item is food

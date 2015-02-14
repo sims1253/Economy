@@ -14,8 +14,8 @@ producers::producers(const product inputProduct, const int inputProductivity, co
 	this->item					= inputProduct;
 	this->productionAmount		= inputProductivity;
 	this->productionCapacity	= inputProductionCapacity;
-	this->money					= inputMoney;
-	this->alive					= 1;
+	this->money 				= inputMoney;
+	this->alive 				= 1;
 
 	// TODO Vectoren Initialisieren
 	this->storage.push_back(4);
@@ -35,7 +35,7 @@ producers::~producers(void)
 \brief Updates the state of the producer.
 \param change change in productivity.
 
-Produces items until storage is full or productionAmount is reached. 
+Produces items until storage is full or productionAmount is reached.
 Then calls producers::upgrade if >0, producers::downgrade if <0 or does nothing.
 */
 void producers::update(char change)

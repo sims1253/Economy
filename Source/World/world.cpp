@@ -26,7 +26,7 @@ void world::update()
 
 void world::dump()
 	{
-	
+
 	char *productNames[] =
 	{
 	"WATER",

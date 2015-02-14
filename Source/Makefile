@@ -1,10 +1,10 @@
 #! /bin/make
 
-GPP      := g++
-SRCS     := $(shell find -regex .*\.cpp)
-OBJS     := $(addsuffix .o,$(basename $(SRCS)))
+GPP 	 := g++
+SRCS	 := $(shell find -regex .*\.cpp)
+OBJS	 := $(addsuffix .o,$(basename $(SRCS)))
 CPPFLAGS :=
-TARGET   := economy
+TARGET	 := economy
 
 default: build
 

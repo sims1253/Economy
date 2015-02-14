@@ -16,7 +16,7 @@ int main(){
 		welt.update();
 		std::cout << "\nUpdate \n";
 		welt.dump();
-		
+
 		welt.trade();
 		std::cout << "\nTrade \n";
 		welt.dump();
