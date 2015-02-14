@@ -11,4 +11,4 @@ compiler:
   - gcc
   - clang
 
-script: make
+script: cd Source && make
