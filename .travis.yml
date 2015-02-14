@@ -1,0 +1,14 @@
+language: cpp
+
+notifications:
+	recipients:
+		- m0hawk@gmx.de
+	email:
+		on_failure: always
+		on_success: change
+
+compiler:
+  - gcc
+  - clang
+
+script: make
