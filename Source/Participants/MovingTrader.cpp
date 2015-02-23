@@ -21,10 +21,10 @@ MovingTrader::MovingTrader(const int productionAmount, const int productionCapac
 	this->alive = 1;
 
 	// TODO initialize vectors
-	storageCapacity[WATER] = 4;
 	storageCapacity[FOOD] = 4;
-	stock[WATER] = 1;
+	storageCapacity[TOOLS] = 4;
 	stock[FOOD] = 1;
+	stock[TOOLS] = 1;
 }
 
 /*

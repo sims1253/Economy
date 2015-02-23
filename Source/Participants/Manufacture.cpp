@@ -22,9 +22,9 @@ Manufacture::Manufacture(std::map<const product, std::pair<int, int> > productio
 	this->alive = 1;
 
 	// TODO initialize vectors
-	storageCapacity[WATER] = 4;
+	storageCapacity[TOOLS] = 4;
 	storageCapacity[FOOD] = 4;
-	stock[WATER] = 1;
+	stock[TOOLS] = 1;
 	stock[FOOD] = 1;
 }
 
