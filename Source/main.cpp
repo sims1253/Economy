@@ -8,18 +8,10 @@ int main(){
 	std::getchar();
 	int i = 10;
 
-	World welt;
+	World *welt = new World();
 
 	std::getchar();
-	while(i){
-		std::cout << "========================================================== \n";
-		welt.update();
-		std::cout << "\nUpdate \n";
-
-
-
-		getchar();
-		i--;
-		}
+	welt->debug();
+	std::getchar();
 	return 0;
 	}

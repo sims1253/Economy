@@ -3,17 +3,26 @@
 #include "ressources.h"
 #include <time.h>
 
-using namespace std;
+struct worldData
+{
+	int type;
+	int size;
+};
+
 class World
 {
+
 private:
-vector<unique_ptr<Village>> villages;
-vector<pair<pair<int, int>, pair<int, int>>> ressources;
+	const int villageCount= 5;
+	const int ressourceAmmount = 10;
+	const int worldSize = 10;
+	std::vector<std::unique_ptr<Village>> villages;
+	std::vector<std::vector<std::unique_ptr<worldData>>> worldMap;
 public:
 	World(void);
-	World(const int villageCount, const int ressourceAmmount);
+	World(const int worldSize, const int villageCount, const int ressourceAmmount);
 	~World(void);
 	void worldInitialization(const int villageCount, const int ressourceAmmount);
 	void update(void);
-	int worldSize;
+	void debug();
 };
