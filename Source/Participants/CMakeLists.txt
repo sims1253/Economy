@@ -1,0 +1,7 @@
+list(APPEND SRC
+${CMAKE_CURRENT_LIST_DIR}/EconomyParticipants
+${CMAKE_CURRENT_LIST_DIR}/Manufactur
+${CMAKE_CURRENT_LIST_DIR}/MovingTrader
+${CMAKE_CURRENT_LIST_DIR}/Traders
+)
+set(SRC "${SRC}" PARENT_SCOPE)

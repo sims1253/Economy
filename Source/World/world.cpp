@@ -9,10 +9,9 @@
 
 world::world(void)
 {
-	this->consumer = new consumers(FOOD, 1, 3, 1, 100);
-	this->producer = new producers(FOOD, 2, 3, 100);
+	this->consumer = new Manufactur(0, 3, 1, 1, 5, 200, FOOD);
+	this->producer = new Manufactur(2, 3, 1, 1, 5, 200, FOOD);
 }
-
 
 world::~world(void)
 {
@@ -20,41 +19,26 @@ world::~world(void)
 
 void world::update()
 	{
-	consumer->update(0);
-	producer->update(0);
+	consumer->update(0, 0);
+	consumer->dump(1);
+	producer->update(0, 0);
+	producer->dump(2);
 	}
 
-void world::dump()
-	{
-	
-	char *productNames[] =
-	{
-	"WATER",
-	"FOOD",
-	"TOOLS"
-	};
-	std::cout << "-------------------------------------------- \n";
-	std::cout << "Consumer 1:" << std::endl;
-	std::cout << "Consumes " << consumer->consumeAmount << " of " << productNames[consumer->item] << ". Has " << consumer->money << " moneys." << std::endl;
-	std::cout << "Storage: \n" << productNames[FOOD] << ": " << consumer->stock[FOOD] << "/" << consumer->storage[FOOD] << std::endl << std::endl;
-
-	std::cout << "Producer 1:" << std::endl;
-	std::cout << "Produces " << producer->productionAmount << " of " << productNames[producer->item] << ". Has " << producer->money << " moneys." << std::endl;
-	std::cout << "Storage: \n" << productNames[FOOD] << ": " << producer->stock[FOOD] << "/" << producer->storage[FOOD] << std::endl;
-	}
-
+//BUGGY AS HELL
+//TODO debug pls
 void world::trade()
 	{
-	if(producer->stock[FOOD] > (consumer->storage[FOOD]-consumer->stock[FOOD]))
+	if (producer->tradable(FOOD) > consumer->tradable(FOOD))
 		{
-		int tmp = (consumer->storage[FOOD]-consumer->stock[FOOD]);
-		producer->give(FOOD, tmp, 25);
-		consumer->receive(FOOD, tmp, 5);
+		producer->give(FOOD, producer->tradable(FOOD), 25);
+		consumer->receive(FOOD, producer->tradable(FOOD), 25);
 		}
 	else
-		{
-		int tmp = producer->stock[FOOD];
-		producer->give(FOOD, tmp, 25);
-		consumer->receive(FOOD, tmp, 5);
+	{
+		producer->give(FOOD, consumer->tradable(FOOD), 25);
+		consumer->receive(FOOD, consumer->tradable(FOOD), 25);
 		}
+	consumer->dump(1);
+	producer->dump(2);
 	}

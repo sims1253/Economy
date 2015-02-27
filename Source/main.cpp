@@ -8,18 +8,17 @@ int main(){
 	std::getchar();
 	int i = 10;
 	world welt;
-	welt.dump();
 
 	std::getchar();
 	while(i){
 		std::cout << "========================================================== \n";
 		welt.update();
 		std::cout << "\nUpdate \n";
-		welt.dump();
+
 		
 		welt.trade();
 		std::cout << "\nTrade \n";
-		welt.dump();
+
 
 
 		getchar();
