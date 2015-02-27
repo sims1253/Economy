@@ -53,4 +53,4 @@ before_install:
 
 script:
   - g++ --version
-  - make 
+  - cd Source && make
