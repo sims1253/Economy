@@ -17,7 +17,7 @@ private:
 	const int ressourceAmmount = 10;
 	const int worldSize = 10;
 	std::vector<std::unique_ptr<Village>> villages;
-	std::vector<std::vector<std::unique_ptr<worldData>>> worldMap;
+	std::vector<std::vector<worldData>> worldMap;
 public:
 	World(void);
 	World(const int worldSize, const int villageCount, const int ressourceAmmount);
