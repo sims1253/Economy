@@ -32,25 +32,46 @@
 #script: cd Source && make
 
 language: cpp
-
 compiler:
-
+  - gcc
   - clang
-  - g++
 
-notifications:
-  recipients:
-    - m0hawk@gmx.de
-  email:
-    on_failure: always
-    on_success: always
+#before_install:
+#  - if [ "$TRAVIS_MCSERVER_BUILD_TYPE" == "COVERAGE" ]; then sudo pip install cpp_coveralls; fi
 
-before_install:
-  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  # g++4.8
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq
-  - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
 
-script:
-  - g++ --version
-  - cd Source && make
+install:
+  # g++4.8 and clang
+  - sudo apt-get install -qq g++-4.8
+
+  # lua, needed for style checking and possibly later on for bindings generation
+  - sudo apt-get install -qq lua5.1
+
+  # g++4.8
+  - if [ "$CXX" == "g++" ]; then export CXX="g++-4.8"; export CC="gcc-4.8"; fi
+
+# Build MCServer
+script: cd Source && make
+
+#after_success:
+#  - ./uploadCoverage.sh
+
+#env:
+#  - TRAVIS_MCSERVER_BUILD_TYPE=RELEASE MCSERVER_PATH=./MCServer
+#  - TRAVIS_MCSERVER_BUILD_TYPE=DEBUG   MCSERVER_PATH=./MCServer_debug
+#  - TRAVIS_MCSERVER_BUILD_TYPE=RELEASE TRAVIS_MCSERVER_FORCE32=1 MCSERVER_PATH=./MCServer
+#  - TRAVIS_MCSERVER_BUILD_TYPE=DEBUG   TRAVIS_MCSERVER_FORCE32=1 MCSERVER_PATH=./MCServer_debug
+
+matrix:
+  include:
+    - compiler: gcc
+#      env: TRAVIS_MCSERVER_BUILD_TYPE=COVERAGE   MCSERVER_PATH=./MCServer
+
+# Notification Settings
+notifications:
+  email:
+    on_success: change
+    on_failure: always
