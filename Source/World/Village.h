@@ -18,7 +18,9 @@ private:
 	// TODO Place for buildings
 	// TODO Ressources available
 public:
-	Village(const World *homeWorld);
+	Village(const World *homeWorld, const int ID);
 	~Village(void);
 	void update();
+	const int ID;
+	int getID(void);
 	};

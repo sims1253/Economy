@@ -24,19 +24,6 @@ World::~World(void)
 
 void World::worldInitialization(const int _villageCount, const int _ressourceAmmount)
 {
-	/*
-	std::vector<std::vector<std::unique_ptr<worldData>>> 
-		temp(worldSize, std::vector<std::unique_ptr<worldData>>(worldSize));
-	worldMap = std::move(temp);
-	*/
-
-	for (int i = villageCount; i > 0; i--)
-	{
-		//TODO c++14 gives you std::make_unique
-		auto temp = std::unique_ptr<Village>(new Village(this));
-		villages.push_back(std::move(temp));
-	}
-
 	srand((unsigned int)time(NULL));
 	for (int i = 0; i < worldSize; i++)
 	{
@@ -48,10 +35,19 @@ void World::worldInitialization(const int _villageCount, const int _ressourceAmm
 			{	
 				tempWorldData.type = rand() % NUMBER_OF_RESSOURCES;
 				tempWorldData.size = (rand() % 100)+1 ;
+				tempWorldData.villageID = 0;
 			}
 			worlVector.push_back(tempWorldData);
 		}
 		worldMap.push_back(worlVector);
+	}
+
+	for (int i = villageCount; i > 0; i--)
+	{
+		//TODO c++14 gives you std::make_unique
+		auto temp = std::unique_ptr<Village>(new Village(this, worldIDGenerator.getNewID());
+		worldMap[rand() % worldSize][rand() % worldSize].villageID = temp -> getID();
+		villages[temp -> getID()] = temp;
 	}
 
 	return;
