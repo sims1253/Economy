@@ -10,7 +10,7 @@ int main(){
 	World *welt = new World();
 	welt->debug();
 	std::getchar();
-	World *welt2 = new World(10, 5, 50);
+	World *welt2 = new World(10, 10, 90);
 	welt2-> debug();
 	std::getchar();
 	return 0;

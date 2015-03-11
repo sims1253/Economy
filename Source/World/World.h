@@ -25,8 +25,8 @@ public:
 	World(void);
 	World(const int worldSize, const int villageCount, const int ressourceAmmount);
 	~World(void);
-	void worldInitialization(const int villageCount, const int ressourceAmmount);
+	void worldInitialization();
 	void update(void);
 	void debug();
-	const IDGenerator worldIDGenerator;
+	IDGenerator worldIDGenerator;
 };
