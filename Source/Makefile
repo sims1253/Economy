@@ -3,7 +3,7 @@
 GPP      := g++
 SRCS     := $(shell find -regex .*\.cpp)
 OBJS     := $(addsuffix .o,$(basename $(SRCS)))
-CPPFLAGS := -g --std=gnu++11 -Wall -pedantic
+CPPFLAGS := -std=c++11 -g -Wall -pedantic
 TARGET   := economy
 
 default: build
