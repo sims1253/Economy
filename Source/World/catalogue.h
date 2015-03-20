@@ -1,7 +1,8 @@
 #pragma once
 
 enum  product {
-	WATER,
 	FOOD,
-	TOOLS
+	TOOLS,
+	BRICK,
+	NUMBER_OF_PRODUCTS
 };

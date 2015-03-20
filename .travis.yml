@@ -1,14 +1,30 @@
 language: cpp
-
-notifications:
-  recipients:
-  - m0hawk@gmx.de
-  email:
-    on_failure: always
-    on_success: change
-
 compiler:
   - gcc
   - clang
-
-script: cd Source && make
+before_install:
+  - lsb_release -a
+  - wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key|sudo apt-key add -
+  - sudo add-apt-repository --yes
+    'deb http://ppa.launchpad.net/canonical-x/x-staging/ubuntu precise main'
+  - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+  - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/ppa
+  - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test/ubuntu
+  - if [ ! -z "$QT" ] ; then
+      sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa ;
+    fi
+  - sudo add-apt-repository --yes
+    'deb http://llvm.org/apt/precise/ llvm-toolchain-precise-3.5 main'
+  - sudo apt-get update -qq
+  - sudo apt-get install -q
+    gcc-4.8
+    g++-4.8
+    libstdc++-4.8-dev
+    llvm-3.5
+    clang-3.5
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 40
+    --slave /usr/bin/g++ g++ /usr/bin/g++-4.8
+  - sudo update-alternatives --config gcc
+script: 
+  - $CXX --version
+  - cd Source && make

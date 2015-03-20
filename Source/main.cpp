@@ -1,29 +1,17 @@
 #include <iostream>
 #include <cstdio>
-#include "World/world.h"
+#include "World/World.h"
 
 
 int main(){
-	std::cout << "Hello world\npress enter to continue ";
+	std::cout << "Hello World\npress enter to continue ";
 	std::getchar();
-	int i = 10;
-	world welt;
-	welt.dump();
 
+	World *welt = new World();
+	welt->debug();
 	std::getchar();
-	while(i){
-		std::cout << "========================================================== \n";
-		welt.update();
-		std::cout << "\nUpdate \n";
-		welt.dump();
-		
-		welt.trade();
-		std::cout << "\nTrade \n";
-		welt.dump();
-
-
-		getchar();
-		i--;
-		}
+	World *welt2 = new World(10, 10, 90);
+	welt2-> debug();
+	std::getchar();
 	return 0;
 	}
