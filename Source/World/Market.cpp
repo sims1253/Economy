@@ -1,8 +1,9 @@
 #include "Market.h"
 
-Market::Market(const Village *village)
+Market::Market(const Village *village) 
+	: homeTown(village)
 {
-	this->homeTown = village;
+	
 }
 
 Market::~Market(void)

@@ -3,13 +3,9 @@
 #include "ressources.h"
 #include <time.h>
 #include "IDGenerator.h"
+#include "WorldDataTypes.h"
 
-struct worldData
-{
-	int type;
-	int size;
-	int villageID;
-};
+
 
 class World
 {
@@ -23,10 +19,11 @@ private:
 	std::vector<std::vector<worldData>> worldMap;
 public:
 	World(void);
-	World(const int worldSize, const int villageCount, const int ressourceAmmount);
+	World(const int, const int, const int);
 	~World(void);
 	void worldInitialization();
 	void update(void);
 	void debug();
 	IDGenerator worldIDGenerator;
+	worldData getMyTileData(std::pair<int, int>);
 };

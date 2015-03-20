@@ -44,8 +44,11 @@ void World::worldInitialization()
 	for (int i = villageCount; i > 0; i--)
 	{
 		//TODO c++14 gives you std::make_unique
-		auto temp = std::unique_ptr<Village>(new Village(this, worldIDGenerator.getNewID()));
-		worldMap[rand() % worldSize][rand() % worldSize].villageID = temp->getID();
+		auto randx = rand() % worldSize, randy = rand() % worldSize;
+		auto coords = std::make_pair(randx, randy);
+		auto temp = std::unique_ptr<Village>(new Village(this, worldIDGenerator.getNewID(), coords
+			, worldMap[randx][randy]));
+		worldMap[randx][randy].villageID = temp->getID();
 		villages[temp -> getID()] = std::move(temp);
 	}
 
@@ -58,6 +61,11 @@ void World::update()
 	{
 		villages[i]->update();
 	}
+}
+
+worldData World::getMyTileData(std::pair<int, int> xyCoords)
+{
+	return worldMap[xyCoords.first][xyCoords.second];
 }
 
 void World::debug()
